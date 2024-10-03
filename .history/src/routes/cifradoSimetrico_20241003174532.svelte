@@ -11,22 +11,32 @@
   let decryptedText = "";
 
   function teaEncrypt(v, key) {
-    let [v0, v1] = v;
+    let v0 = v[0],
+      v1 = v[1];
     let sum = 0;
     for (let i = 0; i < NUM_ROUNDS; i++) {
       sum = (sum + DELTA) >>> 0;
-      v0 = (v0 + (((v1 << 4) + key[0]) ^ (v1 + sum) ^ ((v1 >>> 5) + key[1]))) >>> 0;
-      v1 = (v1 + (((v0 << 4) + key[2]) ^ (v0 + sum) ^ ((v0 >>> 5) + key[3]))) >>> 0;
+      v0 =
+        (v0 + (((v1 << 4) + key[0]) ^ (v1 + sum) ^ ((v1 >>> 5) + key[1]))) >>>
+        0;
+      v1 =
+        (v1 + (((v0 << 4) + key[2]) ^ (v0 + sum) ^ ((v0 >>> 5) + key[3]))) >>>
+        0;
     }
     return [v0, v1];
   }
 
   function teaDecrypt(v, key) {
-    let [v0, v1] = v;
+    let v0 = v[0],
+      v1 = v[1];
     let sum = (DELTA * NUM_ROUNDS) >>> 0;
     for (let i = 0; i < NUM_ROUNDS; i++) {
-      v1 = (v1 - (((v0 << 4) + key[2]) ^ (v0 + sum) ^ ((v0 >>> 5) + key[3]))) >>> 0;
-      v0 = (v0 - (((v1 << 4) + key[0]) ^ (v1 + sum) ^ ((v1 >>> 5) + key[1]))) >>> 0;
+      v1 =
+        (v1 - (((v0 << 4) + key[2]) ^ (v0 + sum) ^ ((v0 >>> 5) + key[3]))) >>>
+        0;
+      v0 =
+        (v0 - (((v1 << 4) + key[0]) ^ (v1 + sum) ^ ((v1 >>> 5) + key[1]))) >>>
+        0;
       sum = (sum - DELTA) >>> 0;
     }
     return [v0, v1];
@@ -57,18 +67,26 @@
 
   function encryptData() {
     const key = generateTeaKey();
+
     const nameBlocks = strToUint32Array(name);
     const cardBlocks = strToUint32Array(cardNumber);
     const cvvBlocks = strToUint32Array(cvv);
 
-    encryptedName = nameBlocks.map((block) => bufferToHex(teaEncrypt(block, key))).join(",");
-    encryptedCard = cardBlocks.map((block) => bufferToHex(teaEncrypt(block, key))).join(",");
-    encryptedCVV = cvvBlocks.map((block) => bufferToHex(teaEncrypt(block, key))).join(",");
+    encryptedName = nameBlocks
+      .map((block) => bufferToHex(teaEncrypt(block, key)))
+      .join(",");
+    encryptedCard = cardBlocks
+      .map((block) => bufferToHex(teaEncrypt(block, key)))
+      .join(",");
+    encryptedCVV = cvvBlocks
+      .map((block) => bufferToHex(teaEncrypt(block, key)))
+      .join(",");
   }
 
   function decryptCustomData(input) {
     const key = globalKey;
     const inputBlocks = input.split(",").map(hexToBuffer);
+
     const decryptedBlocks = inputBlocks.map((block) => teaDecrypt(block, key));
     decryptedText = decryptedBlocks
       .map((decryptedArray) =>
@@ -132,12 +150,26 @@
 
       <div class="form-group">
         <label for="cardNumber">Número de Tarjeta:</label>
-        <input type="text" id="cardNumber" name="cardNumber" maxlength="16" bind:value={cardNumber} required />
+        <input
+          type="text"
+          id="cardNumber"
+          name="cardNumber"
+          maxlength="16"
+          bind:value={cardNumber}
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" maxlength="4" bind:value={cvv} required />
+        <input
+          type="text"
+          id="cvv"
+          name="cvv"
+          maxlength="4"
+          bind:value={cvv}
+          required
+        />
       </div>
 
       <div class="button-group">
@@ -145,7 +177,12 @@
         <button type="button" class="green-button" on:click={() => decryptCustomData(decryptedText)}>
           Desencriptar Datos
         </button>
-        <button type="button" class="green-button" on:click={sendData} disabled={!encryptedName || !encryptedCard || !encryptedCVV}>
+        <button
+          type="button"
+          class="green-button"
+          on:click={sendData}
+          disabled={!encryptedName || !encryptedCard || !encryptedCVV}
+        >
           Enviar Datos
         </button>
       </div>
@@ -154,7 +191,12 @@
         <div class="encrypted-section">
           <label>Nombre Cifrado:</label>
           <input type="text" value={encryptedName} readonly />
-          <button class="copy-button" on:click={() => copyToClipboard(encryptedName)}>Copiar</button>
+          <button
+            class="copy-button"
+            on:click={() => copyToClipboard(encryptedName)}
+          >
+            Copiar
+          </button>
         </div>
       {/if}
 
@@ -162,7 +204,12 @@
         <div class="encrypted-section">
           <label>Número de Tarjeta Cifrado:</label>
           <input type="text" value={encryptedCard} readonly />
-          <button class="copy-button" on:click={() => copyToClipboard(encryptedCard)}>Copiar</button>
+          <button
+            class="copy-button"
+            on:click={() => copyToClipboard(encryptedCard)}
+          >
+            Copiar
+          </button>
         </div>
       {/if}
 
@@ -170,13 +217,23 @@
         <div class="encrypted-section">
           <label>CVV Cifrado:</label>
           <input type="text" value={encryptedCVV} readonly />
-          <button class="copy-button" on:click={() => copyToClipboard(encryptedCVV)}>Copiar</button>
+          <button
+            class="copy-button"
+            on:click={() => copyToClipboard(encryptedCVV)}
+          >
+            Copiar
+          </button>
         </div>
       {/if}
 
       <div class="form-group" style="margin-top: 20px;">
         <label for="inputToDecrypt">Texto a desencriptar:</label>
-        <input type="text" id="inputToDecrypt" placeholder="Ingrese texto cifrado" bind:value={decryptedText} />
+        <input
+          type="text"
+          id="inputToDecrypt"
+          placeholder="Ingrese texto cifrado"
+          bind:value={decryptedText}
+        />
         {#if decryptedText}
           <div style="margin-top: 10px;">
             Texto desencriptado: {decryptedText}
@@ -203,6 +260,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
   }
 
   h2 {
@@ -229,35 +287,36 @@
   .button-group {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
   }
 
-  .green-button {
+  button {
+    padding: 10px;
     background-color: #28a745;
-    color: #fff;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+  }
+
+  button.green-button {
+    background-color: #28a745;
   }
 
   .encrypted-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .encrypted-section label {
-    margin-right: 10px;
-    font-weight: bold;
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
   }
 
   .copy-button {
-    margin-left: 10px;
-    background-color: #17a2b8;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
+    margin-top: 5px;
+    background: #17a2b8;
   }
 </style>

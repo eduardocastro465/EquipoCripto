@@ -13,7 +13,7 @@
     <li><a href="/hash" use:link>HASH</a></li>
     <li><a href="/cifladoCesar" use:link>cifladoCesar Pages</a></li>
     <li><a href="/cifladoEscitala" use:link>ciflado Escitala</a></li>
-    <li><a href="/infor" use:link>Mas información</a></li>
+    <li><a href="/infor" use:link>Mas informaci</a></li>
    
   </ul>
 </nav>

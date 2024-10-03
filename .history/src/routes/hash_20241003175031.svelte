@@ -27,11 +27,9 @@
   <div class="container">
     <div class="section">
       <label for="plaintextHash">Texto Plano:</label>
-      <textarea id="plaintextHash" rows="4" bind:value={plaintextHash} placeholder="Introduce el texto aquí..."></textarea>
+      <textarea id="plaintextHash" rows="4" bind:value={plaintextHash}></textarea>
 
       <button on:click={hashData}>Generar Hash</button>
-      
-      <p class="result">{hashResultText}</p>
 
       {#if hashedData}
         <div class="hashed-section">
@@ -45,7 +43,8 @@
 
 <style>
   main {
-    max-width: 600px;
+    width: 90%;
+    max-width: 600px; /* Limitar ancho máximo para pantallas grandes */
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -57,7 +56,6 @@
   h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
   }
 
   .container {
@@ -99,7 +97,6 @@
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s;
-    width: 100%;
   }
 
   button:disabled {
@@ -113,8 +110,7 @@
 
   .copy-button {
     background-color: #007bff;
-    width: auto; /* Ajusta el tamaño del botón de copia */
-    margin-left: 10px; /* Espacio entre el input y el botón */
+    transition: background-color 0.3s;
   }
 
   .copy-button:hover {
@@ -125,7 +121,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 10px; /* Espacio adicional en la sección hasheada */
   }
 
   .hashed-section input {
@@ -136,18 +131,5 @@
   .hashed-section input:focus {
     border-color: #0056b3;
     outline: none;
-  }
-
-  .result {
-    margin: 10px 0;
-    color: #333;
-  }
-
-  @media (min-width: 600px) {
-    .section {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* Alinear a la izquierda en pantallas más grandes */
-    }
   }
 </style>

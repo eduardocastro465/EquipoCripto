@@ -11,7 +11,7 @@ const routes = {
   "/hash": hash,
   "/cifladoCesar": cifladoCesar,
   "/cifladoEscitala": cifladoEscitala,
-  "/infor": infor,
+  "/prueba": prueba,
 };
 
 export default routes;
