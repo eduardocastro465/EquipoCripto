@@ -3,11 +3,26 @@
 <main>
   <h1>¿Por qué elegí Svelte?</h1>
   <p>
-    1. <strong>Desempeño eficiente:</strong> Elegí Svelte porque compila el código directamente a JavaScript optimizado, lo que hace que las aplicaciones sean más rápidas y ligeras.<br><br>
-    2. <strong>Reactividad fácil de manejar:</strong> La reactividad en Svelte es intuitiva y no requiere estados o APIs complejas. Esto me permite desarrollar aplicaciones de forma más rápida.<br><br>
-    3. <strong>Simplicidad en el código:</strong> Con Svelte, puedo escribir menos código, lo que facilita el mantenimiento del proyecto. Su sintaxis es simple y parecida a HTML y JavaScript puro.<br><br>
-    4. <strong>Curva de aprendizaje suave:</strong> En comparación con otros frameworks, la curva de aprendizaje de Svelte es menor, lo que me permitió empezar a trabajar rápidamente.<br><br>
-    5. <strong>Mejora del flujo de trabajo:</strong> Al ser más directo y eficiente, Svelte me ayuda a reducir el tiempo de desarrollo y a obtener resultados de manera más ágil.
+    Elegí Svelte como mi framework de desarrollo por diversas razones que hacen que la experiencia de programación sea más fluida y efectiva. En primer lugar, Svelte se destaca por su desempeño excepcional. A diferencia de otros frameworks, Svelte compila el código directamente a JavaScript optimizado en el momento de la construcción, lo que resulta en aplicaciones más rápidas y ligeras. Esta mejora en el rendimiento es crucial para ofrecer una experiencia de usuario ágil y sati
+  </p>
+  <h1>¿Por qué elegí React?</h1>
+  <p>
+    PrimeReact es un framework de componentes que destaca por su capacidad para
+    simplificar la creación de interfaces de usuario en aplicaciones de
+    encriptado. Su principal atractivo radica en la amplia variedad de
+    componentes ricos y listos para usar que ofrece. Esto incluye desde botones
+    y formularios hasta elementos avanzados como tablas y modales, que son
+    esenciales para construir interfaces de usuario interactivas y funcionales
+    en aplicaciones de encriptado.<br /><br />
+  </p>
+  <h1>¿Por qué elegí Angular?</h1>
+  <p>
+    Elegí Angular porque es un framework completo que facilita la creación de
+    aplicaciones web. Su estructura basada en componentes permite organizar el
+    código de manera clara y reutilizable. Además, viene con herramientas
+    integradas que ayudan a gestionar rutas y formularios, lo que acelera el
+    desarrollo. También cuenta con una gran comunidad y buena documentación,
+    lo que hace más fácil encontrar soluciones y aprender.
   </p>
 </main>
 
@@ -15,7 +30,7 @@
   body {
     background-color: #f4f7f6;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
   main {
